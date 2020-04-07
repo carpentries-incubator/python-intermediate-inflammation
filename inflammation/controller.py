@@ -1,9 +1,6 @@
 """Module containing the MVC Controller of the patient data system."""
 
-from inflammation import (
-    patient,
-    plotting
-)
+from inflammation import (patient, plotting)
 
 
 def controller(args):
@@ -16,7 +13,7 @@ def controller(args):
     infiles = args.infiles
     if not isinstance(infiles, list):
         infiles = [args.infiles]
-        
+
     for filename in infiles:
         inflammation_data = patient.load_csv(filename)
         plotting.visualize(inflammation_data)
