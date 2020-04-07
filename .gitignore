@@ -1,0 +1,12 @@
+# IDEs
+.vscode/
+
+# Virtual environments
+env/
+venv/
+
+# Output files
+*.png
+
+# Python runtime
+*.pyc
