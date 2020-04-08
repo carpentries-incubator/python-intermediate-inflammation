@@ -13,3 +13,4 @@ def load_csv(filename):
 
 # TODO(lesson-design) Add Patient class
 # TODO(lesson-design) Implement data persistence
+# TODO(lesson-design) Add Doctor class
