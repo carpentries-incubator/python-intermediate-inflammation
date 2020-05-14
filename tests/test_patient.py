@@ -2,7 +2,7 @@
 
 
 def test_create_patient():
-    from inflammation.patient import Patient
+    from inflammation.models import Patient
 
     name = 'Alice'
     p = Patient(name=name)
