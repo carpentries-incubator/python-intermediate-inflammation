@@ -22,4 +22,4 @@ Each `TODO` comment should refer to a particular section of the workshop:
 Several tests have been implemented already, some of which are currently failing.
 These failing tests set out the requirements for the additional code to be implemented during the workshop.
 
-To run the tests, we use pytest: `python -m pytest tests/`
+The tests should be run using pytest, which will be introduced during the workshop.
