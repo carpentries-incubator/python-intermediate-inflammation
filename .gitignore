@@ -2,6 +2,9 @@
 .vscode/
 .idea/
 
+# Intermediate Coverage file
+.coverage
+
 # Virtual environments
 env/
 venv/
@@ -11,3 +14,4 @@ venv/
 
 # Python runtime
 *.pyc
+*.egg-info
