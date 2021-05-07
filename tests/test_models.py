@@ -8,11 +8,9 @@ def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
     from inflammation.models import daily_mean
 
-    # NB: the comment 'yapf: disable' disables automatic formatting using
-    # a tool called 'yapf' which we have used when creating this project
     test_input = np.array([[0, 0],
                            [0, 0],
-                           [0, 0]])  # yapf: disable
+                           [0, 0]])
     test_result = np.array([0, 0])
 
     # Need to use Numpy testing functions to compare arrays
@@ -25,7 +23,7 @@ def test_daily_mean_integers():
 
     test_input = np.array([[1, 2],
                            [3, 4],
-                           [5, 6]])  # yapf: disable
+                           [5, 6]])
     test_result = np.array([3, 4])
 
     # Need to use Numpy testing functions to compare arrays
