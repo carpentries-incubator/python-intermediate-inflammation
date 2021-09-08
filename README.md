@@ -1,10 +1,10 @@
-# PatientDB
+# Introduction
 
-A template repository for the Intermediate Python Development course.
+A template code repository for the Intermediate Python Development course.
 
 ## Purpose
 
-This repository is intended to be used as a template which is copied by learners at a Intermediate Python Development workshop.
+This repository is intended to be used as a code template which is copied by learners at a Intermediate Python Development workshop.
 This can be done using the `Use this template` button towards the top right of this repo's GitHub page.
 
 ## TODOs
