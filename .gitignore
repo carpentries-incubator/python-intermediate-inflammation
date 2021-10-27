@@ -5,10 +5,6 @@
 # Intermediate Coverage file
 .coverage
 
-# Virtual environments
-env/
-venv/
-
 # Output files
 *.png
 
