@@ -9,14 +9,14 @@ from inflammation import models, views
 
 
 def analyse_data(data_dir):
-    """Calculate the standard deviation by day between datasets
+    """Calculates the standard deviation by day between datasets.
 
-    Gets all the inflammation csvs within a directory, works out the mean
-    inflammation value for each day across all datasets, then graphs the
-    standard deviation of these means."""
+    Gets all the inflammation data from CSV files within a directory,
+    works out the mean inflammation value for each day across all datasets,
+    then plots the graphs of standard deviation of these means."""
     data_file_paths = glob.glob(os.path.join(data_dir, 'inflammation*.csv'))
     if len(data_file_paths) == 0:
-        raise ValueError(f"No inflammation csv's found in path {data_dir}")
+        raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
     data = map(models.load_csv, data_file_paths)
 
 
