@@ -56,6 +56,12 @@ def patient_normalise(data):
 
     Negative values are rounded to 0.
     """
+    if not isinstance(data, np.ndarray):
+        raise TypeError('Input type incorrect! Data type should be ndarray.')
+
+    if len(data.shape) != 2:
+        raise ValueError('Inflammation array should be 2D.')
+
     if np.any(data < 0):
         raise ValueError('Inflammation values should not be negative')
 
