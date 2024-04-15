@@ -1,5 +1,7 @@
+coverage==7.4.4
 iniconfig==2.0.0
 numpy==1.26.4
 packaging==24.0
 pluggy==1.4.0
 pytest==8.1.1
+pytest-cov==5.0.0
