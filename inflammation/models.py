@@ -15,7 +15,8 @@ Functions:
 
 import numpy as np
 
-def load_csv(filename):  
+
+def load_csv(filename):
     """Load a Numpy array from a CSV
 
     :param filename: Filename of CSV to load
@@ -23,29 +24,36 @@ def load_csv(filename):
     """
     return np.loadtxt(fname=filename, delimiter=',')
 
-def daily_mean(data):
-   """Calculate the daily mean of a 2D inflammation data array for each day.
 
-   :param data: A 2D data array with inflammation data (each row contains measurements for a single patient across all days).
+def daily_mean(data):
+    """Calculate the daily mean of a 2D inflammation data array for each day.
+
+   :param data: A 2D data array with inflammation data
+   (each row contains measurements for a single patient across all days).
    :returns: An array of mean values of measurements for each day.
    """
-   return np.mean(data, axis=0)
+    return np.mean(data, axis=0)
+
 
 def daily_max(data):
-   """Calculate the daily maximum of a 2D inflammation data array for each day.
+    """Calculate the daily maximum of a 2D inflammation data array for each day.
 
-   :param data: A 2D data array with inflammation data (each row contains measurements for a single patient across all days).
+   :param data: A 2D data array with inflammation data
+   (each row contains measurements for a single patient across all days).
    :returns: An array of max values of measurements for each day.
    """
-   return np.max(data, axis=0)
+    return np.max(data, axis=0)
+
 
 def daily_min(data):
-   """Calculate the daily minimum of a 2D inflammation data array for each day.
+    """Calculate the daily minimum of a 2D inflammation data array for each day.
 
-   :param data: A 2D data array with inflammation data (each row contains measurements for a single patient across all days).
+   :param data: A 2D data array with inflammation data
+   (each row contains measurements for a single patient across all days).
    :returns: An array of minimum values of measurements for each day.
    """
-   return np.min(data, axis=0)
+    return np.min(data, axis=0)
+
 
 def patient_normalise(data):
     """
@@ -58,9 +66,9 @@ def patient_normalise(data):
     if np.any(data < 0):
         raise ValueError('Inflammation values should not be negative')
 
-    max = np.nanmax(data, axis=1)
+    max_data = np.nanmax(data, axis=1)
     with np.errstate(invalid='ignore', divide='ignore'):
-        normalised = data / max[:, np.newaxis]
+        normalised = data / max_data[:, np.newaxis]
     normalised[np.isnan(normalised)] = 0
     normalised[normalised < 0] = 0
     return normalised
