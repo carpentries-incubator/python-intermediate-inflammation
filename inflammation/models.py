@@ -11,6 +11,7 @@ Functions:
     daily_mean - returns the mean of a Numpy array
     daily_max - returns the max of a Numpy array
     daily_min - returns the min of a Numpy array
+    daily_std - returns the standard deviation of a Numpy array
 """
 
 import numpy as np
@@ -53,6 +54,16 @@ def daily_min(data):
    :returns: An array of minimum values of measurements for each day.
    """
     return np.min(data, axis=0)
+
+
+def daily_std(data):
+    """Calculate the daily standard deviation of a 2D inflammation data array for each day.
+
+   :param data: A 2D data array with inflammation data
+   (each row contains measurements for a single patient across all days).
+   :returns: An array of daily standard deviation measurements for each day.
+   """
+    return np.std(data, axis=0)
 
 
 def patient_normalise(data):
