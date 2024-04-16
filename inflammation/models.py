@@ -41,4 +41,4 @@ def s_dev(data):
         devs.append((entry - mmm) * (entry - mmm))
 
     s_dev = sum(devs) / len(data)
-    return {'standard deviation': s_dev2}
+    return {'standard deviation': s_dev}
