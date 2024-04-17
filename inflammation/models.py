@@ -61,4 +61,5 @@ def daily_stdev(data):
     :param data: 2D inflammation data array.
     :returns: An array of std values of measurements for each day.
     """
-    return np.std(data, axis=1)
+    std = np.std(data, axis=0)
+    return std
