@@ -6,16 +6,16 @@ import argparse
 from inflammation import models, views
 
 
-def main(args):
+def main(sysdat):
     """The MVC Controller of the patient inflammation data system.
 
     The Controller is responsible for:
     - selecting the necessary models and views for the current task
     - passing data between models and views
     """
-    in_files = args.infiles
+    in_files = sysdat.infiles
     if not isinstance(in_files, list):
-        in_files = [args.infiles]
+        in_files = [sysdat.infiles]
 
 
     for filename in in_files:
@@ -36,6 +36,6 @@ if __name__ == "__main__":
         nargs = '+',
         help = 'Input CSV(s) containing inflammation series for each patient')
 
-    args = parser.parse_args()
+    sysdat2 = parser.parse_args()
 
-    main(args)
+    main(sysdat2)
