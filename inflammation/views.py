@@ -1,7 +1,13 @@
 """Module containing code for plotting inflammation data."""
 
+import matplotlib
+
+# print(matplotlib.get_backend())
 from matplotlib import pyplot as plt
-#import numpy as np
+
+# import numpy as np
+
+matplotlib.use("macosx")
 
 
 def visualize(data_dict):
