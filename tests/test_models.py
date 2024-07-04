@@ -45,7 +45,7 @@ def test_daily_min(test, expected):
     """Test mean function works for array of zeroes and positive integers."""
     from inflammation.models import daily_min
     npt.assert_array_equal(daily_min(np.array(test)), np.array(expected))
-    
+
 @pytest.mark.parametrize(
     "test, expected",
     [
@@ -56,3 +56,8 @@ def test_daily_max(test, expected):
     """Test mean function works for array of zeroes and positive integers."""
     from inflammation.models import daily_max
     npt.assert_array_equal(daily_max(np.array(test)), np.array(expected))
+
+# def test_load_csv():
+#     from inflammation.models import load_csv
+#     test = "1, 2, 3, 4"
+#     expected = ["1", "2", "3", "4"]
