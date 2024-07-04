@@ -1,0 +1,29 @@
+name: CI
+
+on: push
+
+jobs:
+
+    build:
+
+        runs-on: ubuntu-latest
+
+        steps: 
+        
+        # a name is optional label shown in the log - helpful for logging - can be anything
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        
+        - name: Set up Python version
+          uses: actions/setup-python@v4
+          with:
+            python-version: "3.12"
+        
+        - name: Install Python dependencies
+          run: |
+              python3 -m pip install --upgrade pip
+              python3 -m pip install -r requirements.txt
+      
+        - name: Test with PyTest
+          run: |
+              python3 -m pytest --cov=inflammation.models tests/test_models.py
