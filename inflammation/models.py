@@ -65,3 +65,13 @@ def patient_normalise(data):
     normalised[np.isnan(normalised)] = 0
     normalised[normalised < 0] = 0
     return normalised
+
+def s_dev(data):
+    """Computes and returns standard deviation for data."""
+    mmm = np.mean(data, axis=0)
+    devs = []
+    for entry in data:
+        devs.append((entry - mmm) * (entry - mmm))
+
+    s_dev2 = sum(devs) / len(data)
+    return {'standard deviation': s_dev2}
