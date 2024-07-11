@@ -8,7 +8,7 @@ and each column represents a single day across all patients.
 """
 
 import numpy as np
-def load_csv(filename):
+def load_csv(filename: str):
     """Load a Numpy array from a CSV
 
     :param filename: Filename of CSV to load
