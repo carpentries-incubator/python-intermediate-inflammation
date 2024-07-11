@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "inflammation"
+version = "1.0.0"
+description = "handle inflammation data"
+authors = ["dominikgoeller <22domig@gmail.com>"]
+license = "GPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
