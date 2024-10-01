@@ -42,4 +42,4 @@ jobs:
 
     - name: Check style with Pylint
       run: |
-        python3 -m pylint --fail-under=0 --reports=y inflammation
+        python3 -m pylint --reports=y inflammation
