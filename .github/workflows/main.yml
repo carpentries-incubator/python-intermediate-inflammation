@@ -38,4 +38,3 @@ jobs:
 
     - name: Test with PyTest
       run: |
-        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py

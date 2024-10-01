@@ -126,12 +126,17 @@ def test_daily_min_string():
                 ValueError
         ),
         (
-                "A string",
+                str("A string"),
                 None,
                 TypeError
         ),
         (
-                3,
+                dict({"key": "value"}),
+                None,
+                TypeError
+        ),
+        (
+                [[[1, 2], [1, 2], [1, 2]], [[1, 2], [1, 2], [1, 2]], [[1, 2], [1, 2], [1, 2]]],
                 None,
                 ValueError
         ),
@@ -146,8 +151,8 @@ def test_patient_normalise(test, expected, expect_raises):
 
     if expect_raises is not None:
         with pytest.raises(expect_raises):
-            _ = patient_normalise(np.array(test))
+            _ = patient_normalise(test)
 
     else:
-        result = patient_normalise(np.array(test))
+        result = patient_normalise(test)
         npt.assert_allclose(result, np.array(expected), rtol=1e-2, atol=1e-2)
