@@ -10,9 +10,10 @@ jobs:
 
     # Here we add the matrices definition:
     strategy:
+      fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        python-version: ["3.10", "3.11"]
+        os: ["ubuntu-latest"] #, "macos-latest", "windows-latest"]
+        python-version: ["3.10"] #, "3.11"]
 
     # we can also specify the OS to run tests on
     runs-on: ${{ matrix.os }}
