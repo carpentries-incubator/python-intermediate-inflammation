@@ -18,8 +18,8 @@ jobs:
 
     - name: Check style with Pylint
       run: |
-        python3 -m pylint --fail-under=0 --reports=y inflammation
-        
+        python -m pylint --fail-under=0 --reports=y inflammation
+
     - name: Checkout repository
       uses: actions/checkout@v4
 
