@@ -1,31 +1,68 @@
 """Module containing mechanism for calculating standard deviation between datasets.
 """
 
+from typing import List
 import glob
 import os
 import numpy as np
+from pathlib import Path
 
 from inflammation import models, views
 
 
-def analyse_data(data_dir):
-    """Calculates the standard deviation by day between datasets.
+class JSONDataSource:
+    def __init__(self, data_dir: Path):
+        '''Constructor method for JSONDataSource.
 
-    Gets all the inflammation data from CSV files within a directory,
-    works out the mean inflammation value for each day across all datasets,
-    then plots the graphs of standard deviation of these means."""
-    data_file_paths = glob.glob(os.path.join(data_dir, 'inflammation*.csv'))
-    if len(data_file_paths) == 0:
-        raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
-    data = map(models.load_csv, data_file_paths)
+        Takes in data_dir argument on construction.
 
+        Parameters
+        ----------
+        data_dir : Path
+            The full path to the directory where your inflammation CSV files are stored.
 
-    means_by_day = map(models.daily_mean, data)
-    means_by_day_matrix = np.stack(list(means_by_day))
+        Returns
+        -------
+        None
+        '''
+        self.data_dir = data_dir
 
-    daily_standard_deviation = np.std(means_by_day_matrix, axis=0)
+    def load_inflammation_data(self) -> List[np.ndarray]:
+        '''Loads the inflammation data into the class.
+        '''
 
-    graph_data = {
-        'standard deviation by day': daily_standard_deviation,
-    }
-    views.visualize(graph_data)
+        data_file_paths = glob.glob(os.path.join(self.data_dir, 'inflammation*.json'))
+        if len(data_file_paths) == 0:
+            raise ValueError(f"No inflammation data JSON files found in path {self.data_dir}")
+        data = list(map(models.load_json, data_file_paths))
+
+        return data
+
+class CSVDataSource:
+    def __init__(self, data_dir: Path):
+        '''Constructor method for CSVDataSource.
+
+        Takes in data_dir argument on construction.
+
+        Parameters
+        ----------
+        data_dir : Path
+            The full path to the directory where your inflammation CSV files are stored.
+
+        Returns
+        -------
+        None
+        '''
+        self.data_dir = data_dir
+
+    def load_inflammation_data(self) -> List[np.ndarray]:
+        '''Loads the inflammation data into the class.
+        '''
+
+        data_file_paths = glob.glob(os.path.join(self.data_dir, 'inflammation*.csv'))
+        if len(data_file_paths) == 0:
+            raise ValueError(f"No inflammation data CSV files found in path {self.data_dir}")
+        data = list(map(models.load_csv, data_file_paths))
+
+        return data
+
