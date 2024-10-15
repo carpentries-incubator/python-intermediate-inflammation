@@ -1,7 +1,7 @@
 # IDEs
 .vscode/
 .idea/
-
+venv
 # Intermediate Coverage file
 .coverage
 

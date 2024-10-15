@@ -33,12 +33,19 @@ def daily_min(data):
     return np.min(data, axis=0)
 
 
-def s_dev(data):
+def standard_deviation(data):
     """Computes and returns standard deviation for data."""
-    mmm = np.mean(data, axis=0)
-    devs = []
-    for entry in data:
-        devs.append((entry - mmm) * (entry - mmm))
+    # Defensive programming
+    if not isinstance(data, list):
+        raise TypeError("data is not of type list")
+    if not all(isinstance(element, (int, float)) for sublist in data for element in sublist):
+        raise TypeError("Elements of data are not floats or integers.")
+    if any(len(sublist) == 0 for sublist in data):
+        raise ValueError("data must not contain empty lists.")
 
-    s_dev2 = sum(devs) / len(data)
-    return {'standard deviation': s_dev2}
+    devs = []
+    for row in data:
+        devs.append(np.std(row))
+
+    std_dev = sum(devs) / len(data)
+    return std_dev
