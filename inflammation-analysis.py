@@ -21,7 +21,8 @@ def main(args):
 
 
     if args.full_data_analysis:
-        analyse_data(os.path.dirname(infiles[0]))
+        data_source = CSVDataSource(os.path.dirname(infiles[0]))
+        analyse_data(data_source)
         return
 
     for filename in infiles:
