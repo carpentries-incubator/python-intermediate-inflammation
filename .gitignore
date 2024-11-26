@@ -14,5 +14,8 @@
 .pytest_cache
 
 # virtual env
+.venv/
+.venv
+
 venv/
 venv
