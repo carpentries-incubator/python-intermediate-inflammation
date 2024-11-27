@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        python-version: ["3.12"]
+        python-version: ["3.12"]# this needs to be part of the reqiurements I think, e
 
     # Here we add the reference to the os matrix values
     runs-on: ${{ matrix.os }}
