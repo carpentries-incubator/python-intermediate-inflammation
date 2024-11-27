@@ -7,7 +7,6 @@ from inflammation.models import daily_mean
 
 def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
-    
 
     test_input = np.array([[0, 0],
                            [0, 0],
@@ -16,7 +15,18 @@ def test_daily_mean_zeros():
 
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_mean(test_input), test_result)
+#------------------------------------------
+def test_daily_mean_negatives():
+    """Test that mean function works for an array of zeros."""
 
+    test_input = np.array([[-1, -1],
+                           [-1, -1],
+                           [-1, -1]])
+    test_result = np.array([-1, -1])
+
+    # Need to use Numpy testing functions to compare arrays
+    npt.assert_array_equal(daily_mean(test_input), test_result)
+#------------------------------------------
 
 def test_daily_mean_integers():
     """Test that mean function works for an array of positive integers."""
@@ -29,3 +39,10 @@ def test_daily_mean_integers():
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_mean(test_input), test_result)
 
+def test_daily_mean():
+    test_input = np.array([[1, 2],
+                           [3, 4],
+                           [5, 6]])
+    test_result = np.array([3, 4])
+
+    npt.assert_array_equal(daily_mean(test_input), test_result)
