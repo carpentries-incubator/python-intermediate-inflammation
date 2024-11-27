@@ -78,6 +78,7 @@ def test_daily_min_string():
 """
 
 
+
 """Tests for the Patient model - class/file in this folder
 
 from inflammation.models import Patient
