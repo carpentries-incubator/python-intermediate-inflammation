@@ -10,12 +10,12 @@ and each column represents a single day across all patients.
 import numpy as np
 
 
-def load_csv(filename):  
+def load_csv(filename):
     """Load a Numpy array from a CSV
 
     :param filename: Filename of CSV to load
     """
-    return np.loadtxt(fname=filename, delimiter=',')
+    return np.loadtxt(fname=filename, delimiter=",")
 
 
 def daily_mean(data):
@@ -32,3 +32,13 @@ def daily_min(data):
     """Calculate the daily min of a 2d inflammation data array."""
     return np.min(data, axis=0)
 
+
+def patient_normalise(data):
+    """Normalise patient data from a 2d inflammation data array"""
+    patient_max = np.max(data, axis=1)
+    if np.any(data < 0):
+        raise ValueError("It is not possible to have values below zero")
+    with np.errstate(invalid="ignore", divide="ignore"):
+        normalised = data / patient_max[:, np.newaxis]
+    normalised[np.isnan(normalised)] = 0
+    return normalised
