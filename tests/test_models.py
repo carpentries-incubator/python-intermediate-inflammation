@@ -2,6 +2,7 @@
 
 import numpy as np
 import numpy.testing as npt
+import pytest
 
 from inflammation.models import daily_mean
 
@@ -29,3 +30,8 @@ def test_daily_mean_integers():
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_mean(test_input), test_result)
 
+def test_wrong_input():
+    """ test for typeerror"""
+
+    with pytest.raises(TypeError):
+        error_expected = daily_mean([["A","B"], ["C", "D"]])
