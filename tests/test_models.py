@@ -73,7 +73,7 @@ def test_daily_max(test, expected):
 
 
 @pytest.mark.parametrize(
-    "test, expected, zeros",
+    "test, expected",
     [
         ([[0, 0], [0, 0], [0, 0]], [0, 0]),
         ([[1, 2], [3, 4], [5, 6]], [1, 2]),
