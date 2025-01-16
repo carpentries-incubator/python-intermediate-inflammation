@@ -4,6 +4,7 @@ import numpy as np
 import numpy.testing as npt
 
 from inflammation.models import daily_mean, daily_max, daily_min
+import pytest
 
 def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
@@ -48,3 +49,42 @@ def test_daily_min():
     test_result = np.array([1, 1, 2])
 
     npt.assert_array_equal(daily_min(test_input), test_result)
+
+@pytest.mark.parametrize(
+    "test, expected",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0, 0]),
+        ([[1, 2], [3, 4], [5, 6]], [3, 4]),
+    ])
+def test_daily_mean(test, expected):
+    """Test mean function works for array of zeroes and positive integers."""
+    npt.assert_array_equal(daily_mean(np.array(test)), np.array(expected))
+
+
+@pytest.mark.parametrize(
+    "test, expected",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0, 0]),
+        ([[1, 2], [3, 4], [5, 6]], [5, 6]),
+    ])
+def test_daily_max(test, expected):
+    """Test max function works for array of zeroes and positive integers."""
+    npt.assert_array_equal(daily_max(np.array(test)), np.array(expected))
+
+
+@pytest.mark.parametrize(
+    "test, expected, zeros",
+    [
+        ([[0, 0], [0, 0], [0, 0]], [0, 0]),
+        ([[1, 2], [3, 4], [5, 6]], [1, 2]),
+    ])
+def test_daily_min(test, expected):
+    """Test min function works for array of zeroes and positive integers."""
+    npt.assert_array_equal(daily_min(np.array(test)), np.array(expected))
+
+
+def test_wrong_input():
+    """ test for typeerror"""
+
+    with pytest.raises(TypeError):
+        error_expected = daily_mean([["A", "B"], ["C", "D"]])
