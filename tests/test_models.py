@@ -53,7 +53,7 @@ def test_daily_min():
 @pytest.mark.parametrize(
     "test, expected",
     [
-        ([[0, 0], [0, 0], [0, 0]], [1, 0]),
+        ([[0, 0], [0, 0], [0, 0]], [0, 0]),
         ([[1, 2], [3, 4], [5, 6]], [3, 4]),
     ])
 def test_daily_mean(test, expected):
