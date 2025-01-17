@@ -17,6 +17,7 @@ def analyse_data(data_dir):
     data_file_paths = glob.glob(os.path.join(data_dir, 'inflammation*.csv'))
     if len(data_file_paths) == 0:
         raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
+     # Hi    
     data = map(models.load_csv, data_file_paths)
 
 
