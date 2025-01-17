@@ -30,26 +30,38 @@ def compute_daily_sdev(data):
 
 class CSVDataSrc:
     def __init__(self, data_dir):
-        csv_file_list = glob.glob(os.path.join(data_dir, 'inflammation*.csv'))
-        csv_file_list.sort()
         self.data_dir = data_dir
-        if len(csv_file_list) == 0:
-            raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
-        self.csv_filenames = csv_file_list
-        print(self.csv_filenames[0], self.csv_filenames[-1])
 
     def load_data(self):
-        return map(models.load_csv, self.csv_filenames)
+        csv_file_list = glob.glob(os.path.join(self.data_dir, 'inflammation*.csv'))
+        csv_file_list.sort()
+        if len(csv_file_list) == 0:
+            raise ValueError(f"No inflammation data CSV files found in path {self.data_dir}")
+        print('Loading : ', csv_file_list[0], csv_file_list[-1])
+        return map(models.load_csv, csv_file_list)
 
 
-def analyse_data(data_dir):
+class JSONDataSrc:
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+
+    def load_data(self):
+        json_file_list = glob.glob(os.path.join(self.data_dir, 'inflammation*.json'))
+        json_file_list.sort()
+        if len(json_file_list) == 0:
+            raise ValueError(f"No inflammation data CSV files found in path {self.data_dir}")
+        print('Loading : ', json_file_list[0], json_file_list[-1])
+        return map(models.load_csv, json_file_list)
+
+
+def analyse_data(data_dir, src_type=CSVDataSrc):
     """Calculates the standard deviation by day between datasets.
 
     Gets all the inflammation data from CSV files within a directory,
     works out the mean inflammation value for each day across all datasets,
     then plots the graphs of standard deviation of these means."""
 
-    data = CSVDataSrc(data_dir).load_data()
+    data = src_type(data_dir).load_data()
     daily_standard_deviation = compute_daily_sdev(data)
 
     graph_data = {

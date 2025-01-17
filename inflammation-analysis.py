@@ -6,7 +6,7 @@ import os
 
 from inflammation import models, views
 from inflammation.compute_data import analyse_data
-
+from inflammation.compute_data import CSVDataSrc, JSONDataSrc
 
 def main(args):
     """The MVC Controller of the patient inflammation data system.
@@ -21,7 +21,15 @@ def main(args):
 
 
     if args.full_data_analysis:
-        analyse_data(os.path.dirname(infiles[0]))
+        data_src = os.path.dirname(infiles[0])
+        _, data_ext = os.path.splitext(infiles[0])
+        if data_ext == ".csv":
+            src_type = CSVDataSrc
+        elif data_ext == ".json":
+            src_type = JSONDataSrc
+        else:
+            raise ValueError('Unknown extension: {data_ext}')
+        analyse_data(data_src, src_type=src_type)
         return
 
     for filename in infiles:
