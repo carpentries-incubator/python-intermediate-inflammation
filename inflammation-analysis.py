@@ -5,7 +5,7 @@ import argparse
 import os
 
 from inflammation import models, views
-from inflammation.compute_data import analyse_data
+from inflammation.compute_data import analyse_data, CSVDataSource
 
 
 def main(args):
@@ -21,7 +21,8 @@ def main(args):
 
 
     if args.full_data_analysis:
-        analyse_data(os.path.dirname(infiles[0]))
+        data_source = CSVDataSource(os.path.dirname(infiles[0]))
+        analyse_data(data_source)
         return
 
     for filename in infiles:
@@ -44,6 +45,12 @@ if __name__ == "__main__":
         'infiles',
         nargs='+',
         help='Input CSV(s) containing inflammation series for each patient')
+
+    parser.add_argument(
+        '--file-format',
+        nargs='+',
+        help='Input CSV(s) containing inflammation series for each patient')
+
 
     parser.add_argument(
         '--full-data-analysis',
