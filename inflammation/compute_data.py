@@ -25,7 +25,7 @@ def compute_stacked_means_by_day(data):
 
 def compute_daily_sdev(data):
     means_by_day_matrix = compute_stacked_means_by_day(data)
-    return compute_sdev(compute_daily_sdev)
+    return compute_sdev(means_by_day_matrix)
 
 
 def analyse_data(data_dir):
