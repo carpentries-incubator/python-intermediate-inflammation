@@ -28,6 +28,14 @@ def compute_daily_sdev(data):
     return compute_sdev(means_by_day_matrix)
 
 
+class CSVStuff:
+    def __init__(self, csv_file_list):
+        self.csv_filenames = csv_file_list
+
+    def load_data(self):
+        return map(models.load_csv, self.csv_filenames)
+
+
 def analyse_data(data_dir):
     """Calculates the standard deviation by day between datasets.
 
@@ -39,7 +47,7 @@ def analyse_data(data_dir):
     if len(data_file_paths) == 0:
         raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
 
-    data = map(models.load_csv, data_file_paths)
+    data = CSVStuff(data_file_paths).load_data()
     daily_standard_deviation = compute_daily_sdev(data)
 
     graph_data = {
