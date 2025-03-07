@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-intermediate-inflammation"
+version = "0.0.0"
+requires-python = ">=3.9"
+
+[tool.setuptools]
+packages = ["inflammation"]
