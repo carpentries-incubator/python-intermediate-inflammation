@@ -35,5 +35,5 @@ jobs:
         python3 -m pytest --cov=inflammation.models tests/test_models.py
     - name: Check style with Pylint
       run: |
-        python3 -m pylint --fail-under=0 --reports=y inflammation
+        python3 -m pylint --reports=y inflammation
 
