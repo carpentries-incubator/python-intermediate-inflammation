@@ -27,12 +27,12 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='A basic patient inflammation data management system')
+        description = 'A basic patient inflammation data management system')
 
     parser.add_argument(
         'infiles',
-        nargs='+',
-        help='Input CSV(s) containing inflammation series for each patient')
+        nargs = '+',
+        help = 'Input CSV(s) containing inflammation series for each patient')
 
     args = parser.parse_args()
 
