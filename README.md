@@ -1,17 +1,18 @@
 # Introduction
 
-This is a template software project repository used by the [Intermediate Research Software Development Skills In Python](https://github.com/carpentries-incubator/python-intermediate-development).
+This project is used to analyse inflammation data, using various data analysis methods. The data is stored in multiple CSV files.
 
-## Purpose
+## Exaplanation
+There are 3 main folders in this project:
+- Data: Stores all the inflammation data as CSV files.
+- Inflammation:
+    - models.py: loads the patient inflamation.csv data and produces the daily mean, max, min and patient normalisation.
+    - views.py: plots patient inflammation.csv data
+- Tests:
+    - test_models.py: Test the statistical functions with pseudo data
+    - test_patient.py: Tests the 'patient' model using a name
 
-This repository is intended to be used as a code template which is copied by learners at [Intermediate Research Software Development Skills In Python](https://github.com/carpentries-incubator/python-intermediate-development) course.
+## Important information:
+requirements.txt - contains the libaries needed for thi project
+LICENCE.md
 
-This software project is not finished, does not contain a LICENCE file, the code is currently failing to run and contains some code style issues. 
-It is used as a starting point for the course - issues will be fixed and code will be added in a number of places during the course by learners in their own copies of the repository, as course topics are introduced.
-
-## Tests
-
-Several tests have been implemented already, some of which are currently failing.
-These failing tests set out the requirements for the additional code to be implemented during the workshop.
-
-The tests should be run using `pytest`, which will be introduced during the workshop.
