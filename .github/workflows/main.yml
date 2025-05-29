@@ -1,0 +1,33 @@
+name: CI
+
+# We can specify what GitHub events trigger the action
+on: push
+
+jobs:
+
+  build:
+
+    # We can specify the OS
+    runs-on: ubuntu-latest
+
+    # A job is a series of steps
+    steps:
+    
+    # Next we need to checkout out repository, and set up Python
+    # A 'name' is just an optional label shown in the log - helpful to clarify progress - and can be anything
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt .
+
+    - name: Test with PyTest
+      run: |
+        python3 -m pytest --cov=inflammation.models tests/test_models.py
