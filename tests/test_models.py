@@ -6,6 +6,20 @@ import pytest
 
 from inflammation.models import daily_mean, daily_min, daily_max
 
+# the section stating with @ is a decorator, wrapping around the function.
+# this shorter function does exactly the same - replaces - the two functions below (test_daily_mean_zeros, test_daily_mean_integers)
+@pytest.mark.parametrize(
+        "test, expected",
+        [
+            ([ [0,0], [0,0], [0,0] ], [0,0]), # these are truples (....)
+            ([ [1,2], [3,4], [5,6] ], [3,4])
+        ]
+)
+def test_daily_mean(test, expected):
+    """Test mean function works for array of zeros and positive integers"""
+    npt.assert_array_equal(daily_mean(np.array(test)), np.array(expected))
+
+
 def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
     
