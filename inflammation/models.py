@@ -8,7 +8,9 @@ and each column represents a single day across all patients.
 """
 
 import numpy as np
-
+import glob
+import os
+from inflammation import models, views
 
 def load_csv(filename):  
     """Load a Numpy array from a CSV
@@ -17,6 +19,14 @@ def load_csv(filename):
     """
     return np.loadtxt(fname=filename, delimiter=',')
 
+def load_inflammation_data(data_dir):
+    """Loads inflammation data from the default data directory."""
+    print(data_dir)
+    #data_file_paths = glob.glob(os.path.join(data_dir, 'inflammation*.csv'))
+    if len(data_file_paths) == 0:
+        raise ValueError(f"No inflammation data CSV files found in path {data_dir}")
+    data = map(models.load_csv, data_file_paths)
+    return list(data)
 
 def daily_mean(data):
     """Calculate the daily mean of a 2d inflammation data array."""
