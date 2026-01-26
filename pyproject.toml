@@ -9,3 +9,6 @@ requires-python = ">=3.9"
 
 [tool.setuptools]
 packages = ["inflammation"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "UP", "A", "B", "SIM", "I"]
