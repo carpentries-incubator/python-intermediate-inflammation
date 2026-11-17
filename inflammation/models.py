@@ -6,9 +6,13 @@ Patients' data is held in an inflammation table (2D array) where each row contai
 inflammation data for a single patient taken over a number of days
 and each column represents a single day across all patients.
 """
+import json
+import glob
+import os
 
 import numpy as np
 
+from dataclasses import dataclass
 
 def load_csv(filename):
     """Load a Numpy array from a CSV
@@ -16,6 +20,76 @@ def load_csv(filename):
     :param filename: Filename of CSV to load
     """
     return np.loadtxt(fname=filename, delimiter=",")
+
+
+def load_json(filename):
+    """Load a numpy array from a JSON document.
+
+    Expected format:
+    [
+      {
+        "observations": [0, 1]
+      },
+      {
+        "observations": [0, 2]
+      }
+    ]
+    :param filename: Filename of CSV to load
+    """
+    with open(filename, 'r', encoding='utf-8') as file:
+        data_as_json = json.load(file)
+        return [np.array(entry['observations']) for entry in data_as_json]
+
+@dataclass
+class CSVDataSource:
+    """
+    :param data_dir: Directory containing the inflammation data files
+    :type data_dir: str
+    :param filename_pattern: Glob pattern for inflammation data file names, defaults to "inflammation*.csv"
+    :type filename_pattern: str, optional
+    """
+    data_dir: str
+    filename_pattern: str="inflammation*.csv"
+
+    def load_inflammation_data(self) -> np.array:
+        """Loads inflammation data from csv files and returns a list of 2D numpy arrays containing the inflammation data
+
+        :raises ValueError: If the data dir does not contain any inflammation data
+        :return: Inflammation data per file loaded into a list of numpy arrays.
+        :rtype: np.array
+        """
+        data_file_paths = glob.glob(os.path.join(self.data_dir, self.filename_pattern))
+        if len(data_file_paths) == 0:
+            raise ValueError(f"No inflammation data CSV files found in path {self.data_dir}")
+        data = map(load_csv, data_file_paths)
+        return list(data)
+
+
+
+@dataclass
+class JSONDataSource:
+    """
+    :param data_dir: Directory containing the inflammation data files
+    :type data_dir: str
+    :param filename_pattern: Glob pattern for inflammation data file names, defaults to "inflammation*.json"
+    :type filename_pattern: str, optional
+    """
+    data_dir: str
+    filename_pattern: str="inflammation*.json"
+
+    def load_inflammation_data(self) -> np.array:
+        """Loads inflammation data from json files and returns a list of 2D numpy arrays containing the inflammation data
+
+        :raises ValueError: If the data dir does not contain any inflammation data
+        :return: Inflammation data per file loaded into a list of numpy arrays.
+        :rtype: np.array
+        """
+        data_file_paths = glob.glob(os.path.join(self.data_dir, self.filename_pattern))
+        if len(data_file_paths) == 0:
+            raise ValueError(f"No inflammation data JSON files found in path {self.data_dir}")
+        data = map(load_json, data_file_paths)
+        return list(data)
+
 
 
 def daily_mean(data):
@@ -76,3 +150,11 @@ def patient_normalise(data):
     normalised[np.isnan(normalised)] = 0
     normalised[normalised < 0] = 0
     return normalised
+
+def compute_standard_deviation_by_day(data):
+    means_by_day = map(daily_mean, data)
+    means_by_day_matrix = np.stack(list(means_by_day))
+
+    daily_standard_deviation = np.std(means_by_day_matrix, axis=0)
+
+    return daily_standard_deviation
