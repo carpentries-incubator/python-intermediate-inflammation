@@ -21,16 +21,16 @@ def main(args):
 
 
     if args.full_data_analysis:
-        data_source = CSVDataSource(os.path.dirname(infiles[0]))
+        data_source = models.CSVDataSource(os.path.dirname(infiles[0]))
         analyse_data(data_source)
         return
 
     for filename in infiles:
         _, extension = os.path.splitext(filename)
         if extension == '.json':
-            data_source = JSONDataSource(os.path.dirname(filename))
+            data_source = models.JSONDataSource(os.path.dirname(filename))
         elif extension == '.csv':
-            data_source = CSVDataSource(os.path.dirname(filename))
+            data_source = models.CSVDataSource(os.path.dirname(filename))
         else:
             raise ValueError(f'Unsupported data file format: {extension}')
 

@@ -6,7 +6,8 @@ import numpy as np
 from numpy.testing import assert_array_almost_equal
 
 from unittest.mock import Mock
-from inflammation.compute_data import analyse_data, CSVDataSource, compute_standard_deviation_by_day
+from inflammation.compute_data import analyse_data
+from inflammation.models import CSVDataSource, compute_standard_deviation_by_day
 
 
 def test_analyse_data_mock_source():
@@ -84,6 +85,5 @@ def test_analyse_data():
 ],
 ids=['Two patients in same file', 'Two patients in different files', 'Two identical patients in two different files'])
 def test_compute_standard_deviation_by_day(data, expected_output):
-
     result = compute_standard_deviation_by_day(data)
     assert_array_almost_equal(result, expected_output)
