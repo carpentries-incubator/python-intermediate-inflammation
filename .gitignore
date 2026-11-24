@@ -11,6 +11,9 @@ venv/
 # Output files
 *.png
 
+# docs
+site/
+
 # Python runtime
 *.pyc
 *.egg-info
