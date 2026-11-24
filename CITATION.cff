@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Inflam
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Remie
+    family-names: Janssen
+    email: remiejanssen@fakeemail.com
+repository-code: >-
+  https://github.com/RemieJanssen/python-intermediate-inflammation
+url: >-
+  https://remiejanssen.github.io/python-intermediate-inflammation/
+abstract: >
+  Inflam is a data management system written in Python that
+  manages trial data used in clinical inflammation studies.
+keywords:
+  - Inflammation
+  - Python
+license: EUPL-1.2
