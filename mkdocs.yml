@@ -1,0 +1,13 @@
+site_name: My Docs
+
+nav:
+  - Overview: index.md
+  - API Reference: API
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
