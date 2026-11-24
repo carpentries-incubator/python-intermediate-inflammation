@@ -14,10 +14,18 @@ import numpy as np
 
 from dataclasses import dataclass
 
-def load_csv(filename):
-    """Load a Numpy array from a CSV
+def load_csv(filename: str) -> np.ndarray:
+    """Load a Numpy array from csv
 
-    :param filename: Filename of CSV to load
+        Parameters
+        ----------
+        filename : str
+            path to the csv file
+
+        Returns
+        -------
+        np.ndarray
+            2D array of inflammation data
     """
     return np.loadtxt(fname=filename, delimiter=",")
 
